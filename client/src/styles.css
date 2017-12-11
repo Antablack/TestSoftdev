@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.mat-input-container{
+    width: 100%;
+}
+
+.custom-file-control:lang(en)::before{
+    content: "Buscar" !important;
+}
+
+.custom-file-control:lang(en):empty::after{
+    content: "Seleccione un Archivo..." !important;
+}
+
+#administrar,#home{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    z-index: 1001;
+}

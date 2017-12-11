@@ -1,0 +1,59 @@
+<button mat-raised-button color="primary" (click)="btnSave_click()" [disabled]="!f.valid">Guardar</button>
+<form #f="ngForm">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field>
+                <input matInput placeholder="Nombre " [(ngModel)]="selected.NAME" name="name" #name="ngModel" maxlength="50" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="selected.RELEASEDATE" name="releasedate" #releasedate="ngModel" placeholder="Fecha de Lanzamiento "
+                    required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Lenguaje " [(ngModel)]="selected.LENGUAGE" name="lenguage" #lenguage="ngModel" required>
+                    <mat-option value="Español"> Español</mat-option>
+                    <mat-option value="Ingles">Ingles</mat-option>
+                </mat-select>
+                <mat-hint align="end"></mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-md-5">
+            <label class="custom-file">
+                <input type="file" (change)="flu_change($event)" class="custom-file-input" #flu required>
+                <span class="custom-file-control"></span>
+            </label>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de Lanzamiento</th>
+            <th scope="col">Lenguaje</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataSource">
+            <td>
+                <img src="{{url + item.IMAGE}}" width="100" height="100" />
+            </td>
+            <td>{{item.NAME}}</td>
+            <td>{{item.RELEASEDATE}}</td>
+            <td>{{item.LENGUAGE}}</td>
+            <td>
+                <button mat-mini-fab color="accent" (click)="btnEdit_click(item.MOVIEID)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="btnDelete_click(item.MOVIEID)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">delete_forever</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

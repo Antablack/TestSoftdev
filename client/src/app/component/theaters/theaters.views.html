@@ -1,0 +1,55 @@
+<form #f="ngForm">
+    <div class="row">
+        <div class="col-md-6">
+            <button mat-raised-button color="primary" (click)="btnSave_click()" [disabled]="!f.valid">Guardar</button>
+            <mat-form-field>
+                <input matInput placeholder="Nombre " maxlength="50" [(ngModel)]="selected.NAME" name="name" #name="ngModel" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Ubicacion " maxlength="50" [(ngModel)]="selected.LOCATION" name="location" #name="ngModel" required>
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <h4>Peliculas Disponibles para este Teatro</h4>
+                <button mat-mini-fab color="accent" (click)="btnActualizarMovie_click()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">autorenew</mat-icon>
+                </button>
+            </div>
+            <mat-list>
+                <mat-list-item *ngFor="let item of LisMovies">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" [checked]="exists(item.MOVIEID)!= -1 ? true : false" (click)="chk_click(item.MOVIEID,$event)"
+                                type="checkbox"> {{item.NAME}}
+                        </label>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Ubicacion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataSource">
+            <td>{{item.NAME}}</td>
+            <td>{{item.LOCATION}}</td>
+            <td>
+                <button mat-mini-fab color="accent" (click)="btnEdit_click(item.THEATERSID)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="btnDelete_click(item.THEATERSID)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">delete_forever</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+<a [routerLink]="['/manager']" class="btn btn-primary btn-lg" id="administrar">
+    Administrar</a>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card" style="width: 20rem;">
+            <div class="card-header">
+                Teatros
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let item of lisTheaters">
+                    <a [routerLink]="['/q/' + item.THEATERSID]" class=""> {{item.NAME}}({{item.LOCATION}})</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h4>Peliculas</h4>
+        <div class="row">
+            <div class="card" style="width: 12rem;" *ngFor="let item of lisMovies">
+                <img class="card-img-top" src="{{url + item.IMAGE}}" height="200" alt="Card image cap" />
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5>{{item.NAME}}</h5>
+                        <h6>{{item.RELEASEDATE}} - {{item.LENGUAGE}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
